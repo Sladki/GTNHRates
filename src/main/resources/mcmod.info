@@ -1,0 +1,21 @@
+{
+	"modListVersion": 2,
+	"modList": [{
+		"modid": "${modId}",
+		"name": "${modName}",
+		"description": "Output, recipes and whatever rates for GTNH modpack.",
+		"version": "${modVersion}",
+		"mcversion": "${minecraftVersion}",
+		"url": "https://github.com/Sladki/GTNHRates",
+		"updateUrl": "",
+		"authorList": ["Sladki"],
+		"credits": "",
+		"logoFile": "",
+		"screenshots": [],
+		"parent": "",
+		"requiredMods": [],
+		"dependencies": ["Natura", "Railcraft", "gregtech", "IC2", "Forestry"],
+		"dependants": [],
+		"useDependencyInformation": true
+	}]
+}
