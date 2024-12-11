@@ -4,17 +4,28 @@ import static com.github.sladki.gtnhrates.Utils.applyRate;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import gregtech.api.recipe.RecipeMap;
 import gregtech.api.util.GTRecipe;
 
 public class EventsHandler {
 
-    private boolean serverTickedOnce = false;
+    private boolean modifiedRecipes = false;
+
+    @SubscribeEvent
+    @SideOnly(Side.CLIENT)
+    public void onClientTick(TickEvent.ClientTickEvent event) {
+        if (!modifiedRecipes) {
+            modifiedRecipes = true;
+            modifyRecipesDuration();
+        }
+    }
 
     @SubscribeEvent
     public void onServerTick(TickEvent.ServerTickEvent event) {
-        if (!serverTickedOnce) {
-            serverTickedOnce = true;
+        if (!modifiedRecipes) {
+            modifiedRecipes = true;
             modifyRecipesDuration();
         }
     }
