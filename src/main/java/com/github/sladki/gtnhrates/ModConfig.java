@@ -8,7 +8,7 @@ import com.gtnewhorizon.gtnhlib.config.ConfigurationManager;
 import com.gtnewhorizon.gtnhlib.config.SimpleGuiConfig;
 import com.gtnewhorizon.gtnhlib.config.SimpleGuiFactory;
 
-public class ModConfig implements SimpleGuiFactory {
+public class ModConfig {
 
     protected static Class<?>[] configClasses = { Rates.class };
 
@@ -66,15 +66,18 @@ public class ModConfig implements SimpleGuiFactory {
         }
     }
 
-    @Override
-    public Class<? extends GuiScreen> mainConfigGuiClass() {
-        return GuiConfig.class;
-    }
-
     static public class GuiConfig extends SimpleGuiConfig {
 
         public GuiConfig(GuiScreen parent) throws ConfigException {
             super(parent, "gtnhrates", "GTNH Rates", configClasses);
+        }
+    }
+
+    public static class GUIFactory implements SimpleGuiFactory {
+
+        @Override
+        public Class<? extends GuiScreen> mainConfigGuiClass() {
+            return GuiConfig.class;
         }
     }
 }
