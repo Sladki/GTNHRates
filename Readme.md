@@ -14,3 +14,7 @@ Additionally, the addon tweaks crop growth mechanics to be more time-dependent (
 
 ### Compatibility:
 Tested with GTNH modpack versions `2.7.0` and `2.7.0-beta-4`.
+
+### Installation:
+1. Navigate to [Releases](https://github.com/Sladki/GTNHRates/releases) page and download .jar file.
+2. Put the downloaded file into "mods" subdirectory in the game installation folder (or use your launcher options).
