@@ -1,6 +1,7 @@
 .gradle
 .settings
 /.idea/
+/libs/
 /.vscode/
 /run/
 /build/
@@ -13,7 +14,6 @@
 /logs/
 options.txt
 /saves/
-.github
 usernamecache.json
 banned-ips.json
 banned-players.json
@@ -27,7 +27,6 @@ whitelist.json
 *.iml
 *.ipr
 *.iws
-#src/main/resources/mixins.*([!.]).json
 *.bat
 *.DS_Store
 !gradlew.bat
