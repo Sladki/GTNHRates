@@ -12,7 +12,7 @@ import gregtech.api.items.MetaGeneratedTool;
 public abstract class GTMetaTools {
 
     @ModifyExpressionValue(
-        method = "getContainerItem(Lnet/minecraft/item/ItemStack;Z)Lnet/minecraft/item/ItemStack;",
+        method = "getContainerItem(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/item/ItemStack;",
         at = @At(value = "INVOKE", target = "Lgregtech/api/interfaces/IToolStats;getToolDamagePerContainerCraft()I"))
     private int onGetToolDamagePerContainerCraft(int original) {
         return (int) Math.ceil(original / ModConfig.Rates.gtToolsCraftingDurability);

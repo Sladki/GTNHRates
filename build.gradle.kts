@@ -3,9 +3,9 @@ import org.gradle.api.tasks.JavaExec
 tasks.named<JavaExec>("runServer21") {
     val task = this
     doFirst {
-        val angelicaArtifactId = "Angelica"
+        val dependenciesToExclude = listOf ("Angelica")
         val filteredClasspathFiles = task.classpath.filter { file ->
-            !file.name.contains(angelicaArtifactId)
+            !dependenciesToExclude.any { d -> file.name.contains(d) }
         }
         task.setClasspath(filteredClasspathFiles)
     }

@@ -54,6 +54,14 @@ public class ModConfig {
         @Config.Comment("Bees yield rate")
         @Config.RangeFloat(min = 0.1F, max = 64F)
         public static float beesYield = 4F;
+
+        @Config.Comment("GT single block miners energy discount, affects energy consumption only")
+        @Config.RangeFloat(min = 0.1F, max = 64F)
+        public static float gtSimpleMinersEnergyDiscount = 1F;
+
+        @Config.Comment("IC2 Tree Tap Resin extraction rate")
+        @Config.RangeFloat(min = 0.1F, max = 64F)
+        public static float ic2RubberTreeResinYield = 4F;
     }
 
     protected static void registerConfigClasses() {

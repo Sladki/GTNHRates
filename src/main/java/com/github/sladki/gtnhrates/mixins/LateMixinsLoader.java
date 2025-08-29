@@ -25,6 +25,7 @@ public class LateMixinsLoader implements ILateMixinLoader {
                 "IC2Crops",
                 "GTOres",
                 "GTOilDrill",
+                "GTMiner",
                 // "GTRecipes", // Look at EventsHandler
                 "GTFurnaces",
                 "GTFurnaces$BronzeFurnace",
@@ -32,7 +33,8 @@ public class LateMixinsLoader implements ILateMixinLoader {
                 "RailcraftCokeOvenRecipes",
                 "RailcraftSteamOven",
                 "GTMetaTools",
-                "ForestryBees"));
+                "ForestryBees",
+                "IC2TreeTap"));
         if (loadedMods.contains("HungerOverhaul")) {
             mixinsToLoad.add("HungerOverhaulCrops");
         }
