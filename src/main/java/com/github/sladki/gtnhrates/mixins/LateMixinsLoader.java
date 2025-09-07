@@ -34,7 +34,8 @@ public class LateMixinsLoader implements ILateMixinLoader {
                 "RailcraftSteamOven",
                 "GTMetaTools",
                 "ForestryBees",
-                "IC2TreeTap"));
+                "IC2TreeTap",
+                "GTHammerProspecting"));
         if (loadedMods.contains("HungerOverhaul")) {
             mixinsToLoad.add("HungerOverhaulCrops");
         }

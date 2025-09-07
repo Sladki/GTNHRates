@@ -11,6 +11,7 @@ This is an addon for [GregTech: New Horizons](https://github.com/GTNewHorizons/G
 - **GT tools crafting durability:** 8x
 - **GT singleblock Miners energy consumption:** 1x
 - **IC2 Tree Tap's Sticky Resin extraction amount:** 4x
+- **GT Hammer ore prospecting overhaul:** the radius is 2 blocks, but 100% chance to scan
 
 Additionally, the addon tweaks crop growth mechanics to be more time-dependent (with a minimum growth time of 5 minutes) and less reliant on random.
 All values are configurable on the fly, only recipe changes require restart.

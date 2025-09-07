@@ -15,6 +15,14 @@ public class ModConfig {
     @Config(modid = "gtnhrates")
     static public class Rates {
 
+        @Config.Comment("GT Hammer ore prospecting overhaul: smaller radius (adjustable), but scans all blocks in the radius")
+        @Config.DefaultBoolean(true)
+        public static boolean gtHammerOreProspectingOverhaul = true;
+
+        @Config.Comment("GT Hammer ore prospecting radius")
+        @Config.RangeInt(min = 1, max = 228)
+        public static int gtHammerOreProspectingRadius = 2;
+
         @Config.Comment("Vanilla (and derivatives) and Natura crops growth overhaul. Makes crops growth dependent on time and less random")
         @Config.DefaultBoolean(true)
         public static boolean cropsGrowthOverhaul = true;
