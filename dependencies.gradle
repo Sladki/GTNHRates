@@ -44,5 +44,6 @@ dependencies {
     devOnlyNonPublishable("com.github.GTNewHorizons:Railcraft:9.16.33:dev")
     devOnlyNonPublishable("com.github.GTNewHorizons:ForestryMC:4.10.17:dev")
     devOnlyNonPublishable(project.files("libs/HungerOverhaul-1.7.10-1.0.0.jenkins104.jar"))
+    runtimeOnlyNonPublishable(project.files("libs/worldedit-v0.0.8.jar"))
     // devOnlyNonPublishable("com.github.GTNewHorizons:TinkersConstruct:1.13.49-GTNH:dev")
 }
