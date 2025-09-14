@@ -24,6 +24,7 @@ public class LateMixinsLoader implements ILateMixinLoader {
                 "NaturaCrops",
                 "IC2Crops",
                 "GTOres",
+                "GTOres$Bartworks",
                 "GTOilDrill",
                 "GTMiner",
                 // "GTRecipes", // Look at EventsHandler
