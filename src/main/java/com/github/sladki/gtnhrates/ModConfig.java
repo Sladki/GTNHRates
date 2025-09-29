@@ -15,6 +15,10 @@ public class ModConfig {
     @Config(modid = "gtnhrates")
     static public class Rates {
 
+        @Config.Comment("Automatically open Item Holder covers inventories all at once, and disable shift clicking")
+        @Config.DefaultBoolean(true)
+        public static boolean gtItemHolderCoverOpenAuto = true;
+
         @Config.Comment("GT Hammer ore prospecting overhaul: smaller radius (adjustable), but scans all blocks in the radius")
         @Config.DefaultBoolean(true)
         public static boolean gtHammerOreProspectingOverhaul = true;

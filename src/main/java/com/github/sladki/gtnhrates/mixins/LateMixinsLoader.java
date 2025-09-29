@@ -36,7 +36,8 @@ public class LateMixinsLoader implements ILateMixinLoader {
                 "GTMetaTools",
                 "ForestryBees",
                 "IC2TreeTap",
-                "GTHammerProspecting"));
+                "GTHammerProspecting",
+                "GTItemHolderCover"));
         if (loadedMods.contains("HungerOverhaul")) {
             mixinsToLoad.add("HungerOverhaulCrops");
         }
