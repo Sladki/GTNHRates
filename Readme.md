@@ -12,7 +12,7 @@ This is an addon for [GregTech: New Horizons](https://github.com/GTNewHorizons/G
 - **GT singleblock Miners energy consumption:** 1x
 - **IC2 Tree Tap's Sticky Resin extraction amount:** 4x
 - **GT Hammer ore prospecting overhaul:** the radius is 2 blocks, but 100% chance to scan
-- **Automatically open Item Holder cover inventories: open and close them all at once, like it should be**
+- **Automatically open Item Holder covers' inventories:** open and close them all at once (and disable shift+clicking), like it should be
 
 Additionally, the addon tweaks crop growth mechanics to be more time-dependent (with a minimum growth time of 5 minutes) and less reliant on random.
 All values are configurable on the fly, only recipe changes require restart.
