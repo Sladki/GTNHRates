@@ -18,7 +18,8 @@ Additionally, the addon tweaks crop growth mechanics to be more time-dependent (
 All values are configurable on the fly, only recipe changes require restart.
 
 ### Compatibility:
-Tested with GTNH modpack versions `2.8.0`, `2.8.0-beta-2`, `2.7.0`, `2.7.0-beta-4`.
+Tested with GTNH modpack versions `2.8.1`, `2.8.0`, `2.8.0-beta-2`, `2.7.0`, `2.7.0-beta-4`.
+The mod .jars are not inter compatible between GTNH versions, look at the version suffix in .jar filename.
 
 ### Installation:
 1. Navigate to [Releases](https://github.com/Sladki/GTNHRates/releases) page and download .jar file.

@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -19,15 +18,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import com.github.sladki.gtnhrates.ModConfig;
 import com.gtnewhorizon.gtnhlib.blockpos.BlockPos;
 
-import gregtech.api.GregTechAPI;
-import gregtech.api.enums.Materials;
+import gregtech.api.interfaces.IOreMaterial;
 import gregtech.api.items.MetaBaseItem;
-import gregtech.api.objects.ItemData;
-import gregtech.api.util.GTOreDictUnificator;
 import gregtech.api.util.GTUtility;
-import gregtech.common.blocks.BlockOresAbstract;
-import gregtech.common.blocks.TileEntityOres;
 import gregtech.common.items.behaviors.BehaviourProspecting;
+import gregtech.common.ores.OreManager;
 
 @Mixin(value = BehaviourProspecting.class, remap = false)
 public abstract class GTHammerProspecting {
@@ -48,25 +43,11 @@ public abstract class GTHammerProspecting {
         for (BlockPos blockPos : BlockPos
             .getAllInBox(aX - radius, aY - radius, aZ - radius, aX + radius, aY + radius, aZ + radius)) {
             Block block = aWorld.getBlock(blockPos.getX(), blockPos.getY(), blockPos.getZ());
+            int meta = aWorld.getBlockMetadata(blockPos.getX(), blockPos.getY(), blockPos.getZ());
 
-            if (block instanceof BlockOresAbstract) {
-                TileEntity tileEntity = aWorld.getTileEntity(blockPos.getX(), blockPos.getY(), blockPos.getZ());
-                if (tileEntity instanceof TileEntityOres) {
-                    Materials material = GregTechAPI.sGeneratedMaterials[((TileEntityOres) tileEntity).mMetaData
-                        % 1000];
-                    if (material != null && material != Materials._NULL) {
-                        oresFound.add(material.mDefaultLocalName);
-                    }
-                }
-            } else {
-                int metadata = aWorld.getBlockMetadata(blockPos.getX(), blockPos.getY(), blockPos.getZ());
-                ItemData association = GTOreDictUnificator.getAssociation(new ItemStack(block, 1, metadata));
-                if (association != null && association.mPrefix != null
-                    && association.mMaterial != null
-                    && association.mPrefix.toString()
-                        .startsWith("ore")) {
-                    oresFound.add(association.mMaterial.mMaterial.mDefaultLocalName);
-                }
+            IOreMaterial mat = OreManager.getMaterial(block, meta);
+            if (mat != null) {
+                oresFound.add(mat.getLocalizedName());
             }
         }
 
