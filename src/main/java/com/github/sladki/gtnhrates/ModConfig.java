@@ -90,14 +90,14 @@ public class ModConfig {
         }
     }
 
-    static public class GuiConfig extends SimpleGuiConfig {
+    public class GuiConfig extends SimpleGuiConfig {
 
         public GuiConfig(GuiScreen parent) throws ConfigException {
             super(parent, "gtnhrates", "GTNH Rates", configClasses);
         }
     }
 
-    public static class GUIFactory implements SimpleGuiFactory {
+    public class GUIFactory implements SimpleGuiFactory {
 
         @Override
         public Class<? extends GuiScreen> mainConfigGuiClass() {
