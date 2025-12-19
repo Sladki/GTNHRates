@@ -13,12 +13,13 @@ This is an addon for [GregTech: New Horizons](https://github.com/GTNewHorizons/G
 - **IC2 Tree Tap's Sticky Resin extraction amount:** 4x
 - **GT Hammer ore prospecting overhaul:** the radius is 2 blocks, but 100% chance to scan
 - **Automatically open Item Holder covers' inventories:** open and close them all at once (and disable shift+clicking), like it should be
+- **NEI bookmarks table of contents: lists bookmark "namespaces", allowing to quickly navigate and rearrange them, ties bookmarks to searches (see preview below)
 
 Additionally, the addon tweaks crop growth mechanics to be more time-dependent (with a minimum growth time of 5 minutes) and less reliant on random.
 All values are configurable on the fly, only recipe changes require restart.
 
 ### Compatibility:
-Tested with GTNH modpack versions `2.8.0`, `2.8.0-beta-2`, `2.7.0`, `2.7.0-beta-4`.
+Tested with GTNH modpack versions `2.8.3`, `2.8.0`, `2.8.0-beta-2`, `2.7.0`, `2.7.0-beta-4`.
 
 ### Installation:
 1. Navigate to [Releases](https://github.com/Sladki/GTNHRates/releases) page and download .jar file.

@@ -12,7 +12,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.github.sladki.gtnhrates.ModConfig;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -30,6 +29,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import com.github.sladki.gtnhrates.ModConfig;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -115,7 +115,8 @@ public class NEIBookmarksContents {
         try {
             if (bookmarkFile.createNewFile()) {
                 FileWriter writer = new FileWriter(bookmarkFile);
-                writer.write("[{\"modid\":\"TConstruct\",\"name\":\"heartCanister\",\"meta\":1,\"searchString\":\"%favorites\"}]");
+                writer.write(
+                    "[{\"modid\":\"TConstruct\",\"name\":\"heartCanister\",\"meta\":1,\"searchString\":\"%favorites\"}]");
                 writer.close();
             }
         } catch (IOException e) {
@@ -414,8 +415,7 @@ public class NEIBookmarksContents {
                         List<BookmarkItem> bookmarkItems = ((BookmarkGridAccessor) sortableItem.grid)
                             .neiBookmarksContents$getBookmarkItems();
                         for (int i = 0; i < bookmarkItems.size(); i++) {
-                            if (bookmarkItems.get(i).groupId
-                                == neiBookmarksContents$BOOKMARK_GROUP_ID_NAMESPACES) {
+                            if (bookmarkItems.get(i).groupId == neiBookmarksContents$BOOKMARK_GROUP_ID_NAMESPACES) {
                                 newIndex = sortableItem.getItemIndex() - i + 1;
                                 break;
                             }

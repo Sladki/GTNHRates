@@ -19,7 +19,8 @@ public class LateMixinsLoader implements ILateMixinLoader {
 
     @Override
     public List<String> getMixins(Set<String> loadedMods) {
-        List<String> mixinsToLoad = new ArrayList<>(Arrays.asList(
+        List<String> mixinsToLoad = new ArrayList<>(
+            Arrays.asList(
                 "TileEntityOresAccessor",
                 "NaturaCrops",
                 "IC2Crops",
@@ -37,8 +38,7 @@ public class LateMixinsLoader implements ILateMixinLoader {
                 "ForestryBees",
                 "IC2TreeTap",
                 "GTHammerProspecting",
-                "GTItemHolderCover"
-        ));
+                "GTItemHolderCover"));
         mixinsToLoad.addAll(NEIBookmarksContents.mixins());
         if (loadedMods.contains("HungerOverhaul")) {
             mixinsToLoad.add("HungerOverhaulCrops");
