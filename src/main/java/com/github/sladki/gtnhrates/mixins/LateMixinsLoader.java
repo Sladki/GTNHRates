@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+import com.github.sladki.gtnhrates.mixins.late.NEIBookmarksContents;
 import com.gtnewhorizon.gtnhmixins.ILateMixinLoader;
 import com.gtnewhorizon.gtnhmixins.LateMixin;
 
@@ -18,8 +19,7 @@ public class LateMixinsLoader implements ILateMixinLoader {
 
     @Override
     public List<String> getMixins(Set<String> loadedMods) {
-        List<String> mixinsToLoad = new ArrayList<>(
-            Arrays.asList(
+        List<String> mixinsToLoad = new ArrayList<>(Arrays.asList(
                 "TileEntityOresAccessor",
                 "NaturaCrops",
                 "IC2Crops",
@@ -37,7 +37,9 @@ public class LateMixinsLoader implements ILateMixinLoader {
                 "ForestryBees",
                 "IC2TreeTap",
                 "GTHammerProspecting",
-                "GTItemHolderCover"));
+                "GTItemHolderCover"
+        ));
+        mixinsToLoad.addAll(NEIBookmarksContents.mixins());
         if (loadedMods.contains("HungerOverhaul")) {
             mixinsToLoad.add("HungerOverhaulCrops");
         }

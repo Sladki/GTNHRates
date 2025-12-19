@@ -74,6 +74,10 @@ public class ModConfig {
         @Config.Comment("IC2 Tree Tap Resin extraction rate")
         @Config.RangeFloat(min = 0.1F, max = 64F)
         public static float ic2RubberTreeResinYield = 4F;
+
+        @Config.Comment("[Requires restart] NEI bookmarks table of content: lists bookmarks namespaces on the first namespace and allows to alias searches")
+        @Config.DefaultBoolean(true)
+        public static boolean enableNEIBookmarksContents = true;
     }
 
     protected static void registerConfigClasses() {
