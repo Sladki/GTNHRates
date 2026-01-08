@@ -17,11 +17,11 @@ public class ModConfig {
 
         @Config.Comment("Automatically open Item Holder covers inventories all at once, and disable shift clicking")
         @Config.DefaultBoolean(true)
-        public static boolean gtItemHolderCoverOpenAuto = true;
+        public static boolean gtItemHolderCoverOpenAuto;
 
         @Config.Comment("GT Hammer ore prospecting overhaul: smaller radius (adjustable), but scans all blocks in the radius")
         @Config.DefaultBoolean(true)
-        public static boolean gtHammerOreProspectingOverhaul = true;
+        public static boolean gtHammerOreProspectingOverhaul;
 
         @Config.Comment("GT Hammer ore prospecting radius")
         @Config.RangeInt(min = 1, max = 228)
@@ -29,7 +29,7 @@ public class ModConfig {
 
         @Config.Comment("Vanilla (and derivatives) and Natura crops growth overhaul. Makes crops growth dependent on time and less random")
         @Config.DefaultBoolean(true)
-        public static boolean cropsGrowthOverhaul = true;
+        public static boolean cropsGrowthOverhaul;
 
         @Config.Comment("Growth overhaul minimum time to mature (in seconds)")
         @Config.RangeInt(min = 1)
@@ -77,7 +77,7 @@ public class ModConfig {
 
         @Config.Comment("[Requires restart] NEI bookmarks table of content: lists bookmarks namespaces on the first namespace and allows to alias searches")
         @Config.DefaultBoolean(true)
-        public static boolean enableNEIBookmarksContents = true;
+        public static boolean enableNEIBookmarksContents;
     }
 
     protected static void registerConfigClasses() {
