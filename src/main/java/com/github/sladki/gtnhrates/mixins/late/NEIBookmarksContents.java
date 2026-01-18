@@ -29,6 +29,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import com.github.sladki.gtnhrates.GTNHRates;
 import com.github.sladki.gtnhrates.ModConfig;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -340,7 +341,16 @@ public class NEIBookmarksContents {
             method = "addItem(Lnet/minecraft/item/ItemStack;Lcodechicken/nei/recipe/Recipe$RecipeId;I)Z",
             at = @At("HEAD"))
         private int properGroupForSearchItem(int groupId) {
-            return isContentsOpen() ? neiBookmarksContents$BOOKMARK_GROUP_ID_SEARCH : groupId;
+            if (!isContentsOpen()) {
+                return groupId;
+            }
+            if (getContentsGrid().getGroup(neiBookmarksContents$BOOKMARK_GROUP_ID_SEARCH) == null) {
+                GTNHRates.LOG.warn(
+                    "Tried to assign search group id to an item, but the group does not exist! Grid groups: {}",
+                    ((BookmarkGridAccessor) getContentsGrid()).neiBookmarksContents$getGroups());
+                return groupId;
+            }
+            return neiBookmarksContents$BOOKMARK_GROUP_ID_SEARCH;
         }
 
         @Inject(method = "mouseDragged", at = @At(value = "HEAD"), cancellable = true)
@@ -390,14 +400,21 @@ public class NEIBookmarksContents {
                 ((BookmarkStorageAccessor) storage).neiBookmarksContents$setNamespace(0);
                 NEIClientUtils.playClickSound();
             } else {
-                // search items
                 if (sortableItem == null) {
+                    // jump to namespace
                     if (slot.getGroupId() == neiBookmarksContents$BOOKMARK_GROUP_ID_NAMESPACES) {
                         int namespaceIndex = getBookmarkToNamespaceIndexMap().getOrDefault(slot.getBookmarkItem(), 0);
                         if (namespaceIndex > 0) {
                             ((BookmarkStorageAccessor) storage).neiBookmarksContents$setNamespace(namespaceIndex);
+                        } else {
+                            GTNHRates.LOG.warn(
+                                "Tried to find namespace index to jump, but failed: namespaces map size: {}, slot index: {}, bookmark item: {}",
+                                getBookmarkToNamespaceIndexMap().size(),
+                                slot.slotIndex,
+                                slot.getBookmarkItem());
                         }
                         NEIClientUtils.playClickSound();
+                        // search items
                     } else if (slot.getGroupId() == neiBookmarksContents$BOOKMARK_GROUP_ID_SEARCH) {
                         String s = getBookmarkToSearchStringMap().get(slot.getBookmarkItem());
                         if (s != null) {
@@ -406,7 +423,7 @@ public class NEIBookmarksContents {
                         }
                     }
                 } else {
-                    // jump to namespace
+                    // rearrange
                     List<BookmarkGrid> namespaces = ((BookmarkStorageAccessor) storage)
                         .neiBookmarksContents$getNamespaces();
                     int originalIndex = getBookmarkToNamespaceIndexMap().getOrDefault(slot.getBookmarkItem(), 0);
