@@ -44,6 +44,7 @@ dependencies {
 
     runtimeOnlyNonPublishable("com.github.GTNewHorizons:Angelica:1.0.0-beta66b") // Remove when running a server
 
+    api("com.github.GTNewHorizons:BetterQuesting:3.7.15-GTNH:dev")
     api("com.github.GTNewHorizons:AppleCore:3.3.7:dev")
     api("com.github.GTNewHorizons:Natura:2.8.9:dev")
     api("com.github.GTNewHorizons:harvestcraft:1.3.2-GTNH:dev") // For testing Pam's crops

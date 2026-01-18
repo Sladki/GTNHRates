@@ -1,0 +1,135 @@
+{
+  "preRequisites:9": {
+    "0:10": {
+      "questIDHigh:4": 0,
+      "questIDLow:4": 8
+    }
+  },
+  "properties:10": {
+    "betterquesting:10": {
+      "autoClaim:1": 0,
+      "desc:8": "...not quite. For now at least. Give me that stack of Cobblestone and you can take it.\n\n[note]Also consider playing Creative.[/note]",
+      "globalShare:1": 0,
+      "icon:10": {
+        "Count:3": 1,
+        "Damage:2": 0,
+        "OreDict:8": "",
+        "id:8": "TConstruct:hammer",
+        "tag:10": {
+          "InfiTool:10": {
+            "Accessory:3": 16,
+            "Attack:3": 6,
+            "BaseAttack:3": 6,
+            "BaseDurability:3": 3509,
+            "BonusDurability:3": 0,
+            "Broken:1": 0,
+            "Built:1": 1,
+            "Damage:3": 0,
+            "Extra:3": 16,
+            "Handle:3": 16,
+            "HarvestLevel:3": 4,
+            "HarvestLevel2:3": 5,
+            "HarvestLevelExtra:3": 5,
+            "HarvestLevelModified:1": 0,
+            "Head:3": 16,
+            "HeadEXP:4": 0,
+            "MiningSpeed:3": 700,
+            "MiningSpeed2:3": 700,
+            "MiningSpeedExtra:3": 700,
+            "ModDurability:5": 0.0,
+            "Modifiers:3": 0,
+            "RenderAccessory:3": 16,
+            "RenderExtra:3": 16,
+            "RenderHandle:3": 16,
+            "RenderHead:3": 16,
+            "Shoddy:5": 0.0,
+            "ToolEXP:4": 0,
+            "ToolLevel:3": 1,
+            "TotalDurability:3": 3509,
+            "Unbreaking:3": 2
+          }
+        }
+      },
+      "isMain:1": 0,
+      "isSilent:1": 0,
+      "lockedProgress:1": 0,
+      "name:8": "Better Than Pickaxe...",
+      "questLogic:8": "AND",
+      "repeatTime:3": -1,
+      "repeat_relative:1": 1,
+      "simultaneous:1": 0,
+      "snd_complete:8": "random.levelup",
+      "snd_update:8": "random.levelup",
+      "taskLogic:8": "AND",
+      "visibility:8": "NORMAL"
+    }
+  },
+  "questIDHigh:4": -6089994329248413809,
+  "questIDLow:4": -7941301628525531766,
+  "rewards:9": {
+    "0:10": {
+      "ignoreDisabled:1": 0,
+      "index:3": 0,
+      "rewardID:8": "bq_standard:item",
+      "rewards:9": {
+        "0:10": {
+          "Count:3": 1,
+          "Damage:2": 0,
+          "OreDict:8": "",
+          "id:8": "TConstruct:hammer",
+          "tag:10": {
+            "InfiTool:10": {
+              "Accessory:3": 0,
+              "Attack:3": 3,
+              "BaseAttack:3": 3,
+              "BaseDurability:3": 504,
+              "BonusDurability:3": 0,
+              "Broken:1": 0,
+              "Built:1": 1,
+              "Damage:3": 0,
+              "Extra:3": 7,
+              "Handle:3": 0,
+              "HarvestLevel:3": 0,
+              "HarvestLevel2:3": 0,
+              "HarvestLevelExtra:3": 0,
+              "Head:3": 0,
+              "MiningSpeed:3": 150,
+              "MiningSpeed2:3": 150,
+              "MiningSpeedExtra:3": 456,
+              "ModDurability:5": 0.0,
+              "Modifiers:3": 0,
+              "RenderAccessory:3": 0,
+              "RenderExtra:3": 7,
+              "RenderHandle:3": 0,
+              "RenderHead:3": 0,
+              "Shoddy:5": 0.25,
+              "ToolEXP:3": 0,
+              "ToolLevel:3": 1,
+              "TotalDurability:3": 504,
+              "Unbreaking:3": 0
+            }
+          }
+        }
+      }
+    }
+  },
+  "tasks:9": {
+    "0:10": {
+      "autoConsume:1": 0,
+      "consume:1": 1,
+      "groupDetect:1": 0,
+      "ignoreNBT:1": 1,
+      "index:3": 0,
+      "partialMatch:1": 1,
+      "requiredItems:9": {
+        "0:10": {
+          "Count:3": 64,
+          "Damage:2": 0,
+          "OreDict:8": "stoneCobble",
+          "id:8": "minecraft:cobblestone"
+        }
+      },
+      "taskID:8": "bq_standard:retrieval"
+    }
+  }
+}

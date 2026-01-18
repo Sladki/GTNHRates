@@ -78,6 +78,10 @@ public class ModConfig {
         @Config.Comment("[Requires restart] NEI bookmarks table of content: lists bookmarks namespaces on the first namespace and allows to alias searches")
         @Config.DefaultBoolean(true)
         public static boolean enableNEIBookmarksContents;
+
+        @Config.Comment("New quests")
+        @Config.DefaultBoolean(true)
+        public static boolean enableNewQuests;
     }
 
     protected static void registerConfigClasses() {
