@@ -11,6 +11,8 @@ This is an addon for [GregTech: New Horizons](https://github.com/GTNewHorizons/G
 - **GT tools crafting durability:** 8x
 - **GT singleblock Miners energy consumption:** 1x
 - **IC2 Tree Tap's Sticky Resin extraction amount:** 4x
+
+##### Miscellaneous:
 - **GT Hammer ore prospecting overhaul:** the radius is 2 blocks, but 100% chance to scan
 - **Automatically open Item Holder covers' inventories:** open and close them all at once (and disable shift+clicking), like it should be
 - **NEI bookmarks table of contents**: lists bookmark "namespaces", allowing to quickly navigate and rearrange them, ties bookmarks to searches (see preview below)
@@ -21,7 +23,7 @@ This is an addon for [GregTech: New Horizons](https://github.com/GTNewHorizons/G
 <video src="https://github.com/user-attachments/assets/ab396d9c-fc6a-4c43-bb3d-0879c9e2994f" width="60%" poster=""> </video>
 
 Additionally, the addon tweaks crop growth mechanics to be more time-dependent (with a minimum growth time of 5 minutes) and less reliant on random.
-All values are configurable on the fly, only recipe changes require restart.
+Almost all values are configurable on the fly, recipe changes and NEI bookmarks table of contents require client/server restart.
 
 ### Compatibility:
 Tested with GTNH version: `2.8.4`.
