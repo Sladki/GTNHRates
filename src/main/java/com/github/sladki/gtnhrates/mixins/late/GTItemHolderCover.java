@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import com.github.sladki.gtnhrates.ModConfig.Rates;
+import com.github.sladki.gtnhrates.ModConfig;
 import com.gtnewhorizons.modularui.api.forge.IItemHandlerModifiable;
 import com.gtnewhorizons.modularui.api.screen.ModularWindow;
 import com.gtnewhorizons.modularui.api.screen.UIBuildContext;
@@ -32,7 +32,7 @@ public abstract class GTItemHolderCover extends BaseTileEntity {
 
     @Inject(method = "addCoverTabs", at = @At("TAIL"))
     private void onCreatingCoverButtons(ModularWindow.Builder builder, UIBuildContext buildContext, CallbackInfo ci) {
-        if (!Rates.gtItemHolderCoverOpenAuto) {
+        if (!ModConfig.Misc.gtItemHolderCoverOpenAuto) {
             return;
         }
 

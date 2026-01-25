@@ -67,7 +67,7 @@ public class NEIBookmarksContents {
     private static BookmarkGrid contentsGrid;
 
     public static List<String> mixins() {
-        if (!ModConfig.Rates.enableNEIBookmarksContents) {
+        if (!ModConfig.NEI.enableNEIBookmarksContents) {
             return Collections.emptyList();
         }
         return Stream

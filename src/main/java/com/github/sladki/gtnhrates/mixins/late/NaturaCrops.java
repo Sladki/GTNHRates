@@ -40,7 +40,7 @@ public abstract class NaturaCrops extends BlockBush {
     @Inject(method = "updateTick", at = @At(value = "HEAD"), cancellable = true)
     private void onUpdateTick(World worldIn, int x, int y, int z, Random random, CallbackInfo ci) {
         super.updateTick(worldIn, x, y, z, random);
-        if (ModConfig.Rates.cropsGrowthOverhaul) {
+        if (ModConfig.Misc.cropsGrowthOverhaul) {
             if (worldIn.getBlockLightValue(x, y + 1, z) >= 8) {
                 int metadata = worldIn.getBlockMetadata(x, y, z);
                 if (metadata != METADATA_GROWTH_STAGES_BARLEY[METADATA_GROWTH_STAGES_BARLEY.length - 1]
@@ -50,7 +50,7 @@ public abstract class NaturaCrops extends BlockBush {
                         x,
                         y,
                         z,
-                        20 * ModConfig.Rates.cropsTimeToMature,
+                        20 * ModConfig.Misc.cropsTimeToMature,
                         metadata >= 4 ? METADATA_GROWTH_STAGES_COTTON : METADATA_GROWTH_STAGES_BARLEY);
                     if (newMetadata > metadata) {
                         worldIn.setBlockMetadataWithNotify(x, y, z, newMetadata, 2);

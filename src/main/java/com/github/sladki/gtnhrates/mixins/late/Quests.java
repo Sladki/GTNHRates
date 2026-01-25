@@ -50,7 +50,7 @@ public class Quests {
                 shift = At.Shift.AFTER))
         private static void injectQuests(ICommandSender sender, String databaseName, File dataDir,
             boolean loadWorldSettings, CallbackInfo ci) {
-            if (!ModConfig.Rates.enableNewQuests) {
+            if (!ModConfig.Misc.enableNewQuests) {
                 return;
             }
 

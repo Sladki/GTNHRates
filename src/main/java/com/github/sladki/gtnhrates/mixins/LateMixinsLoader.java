@@ -26,6 +26,8 @@ public class LateMixinsLoader implements ILateMixinLoader {
         // Because the config loads too late
         try {
             ConfigurationManager.registerConfig(ModConfig.Rates.class);
+            ConfigurationManager.registerConfig(ModConfig.NEI.class);
+            ConfigurationManager.registerConfig(ModConfig.Misc.class);
         } catch (ConfigException e) {
             throw new RuntimeException(e);
         }

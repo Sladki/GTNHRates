@@ -38,13 +38,13 @@ public abstract class GTHammerProspecting {
         cancellable = true)
     private void replaceOreProspecting(MetaBaseItem aItem, ItemStack aStack, EntityPlayer aPlayer, World aWorld, int aX,
         int aY, int aZ, ForgeDirection side, float hitX, float hitY, float hitZ, CallbackInfoReturnable<Boolean> cir) {
-        if (!ModConfig.Rates.gtHammerOreProspectingOverhaul) {
+        if (!ModConfig.Misc.gtHammerOreProspectingOverhaul) {
             return;
         }
 
         ArrayList<String> oresFound = new ArrayList<>(8);
 
-        int radius = ModConfig.Rates.gtHammerOreProspectingRadius;
+        int radius = ModConfig.Misc.gtHammerOreProspectingRadius;
         for (BlockPos blockPos : BlockPos
             .getAllInBox(aX - radius, aY - radius, aZ - radius, aX + radius, aY + radius, aZ + radius)) {
             Block block = aWorld.getBlock(blockPos.getX(), blockPos.getY(), blockPos.getZ());

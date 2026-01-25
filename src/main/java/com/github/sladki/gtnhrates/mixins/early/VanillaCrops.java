@@ -36,12 +36,12 @@ public abstract class VanillaCrops extends BlockBush {
     @Inject(method = "updateTick", at = @At(value = "HEAD"), cancellable = true)
     private void onUpdateTick(World worldIn, int x, int y, int z, Random random, CallbackInfo ci) {
         super.updateTick(worldIn, x, y, z, random);
-        if (ModConfig.Rates.cropsGrowthOverhaul) {
+        if (ModConfig.Misc.cropsGrowthOverhaul) {
             if (worldIn.getBlockLightValue(x, y + 1, z) >= 9) {
                 int metadata = worldIn.getBlockMetadata(x, y, z);
                 if (metadata < 7) {
                     int newMetadata = CropsGrowthOverhaul
-                        .newMetadata(worldIn, x, y, z, 20 * ModConfig.Rates.cropsTimeToMature, METADATA_GROWTH_STAGES);
+                        .newMetadata(worldIn, x, y, z, 20 * ModConfig.Misc.cropsTimeToMature, METADATA_GROWTH_STAGES);
                     if (newMetadata > metadata) {
                         worldIn.setBlockMetadataWithNotify(x, y, z, newMetadata, 2);
                         ci.cancel();
