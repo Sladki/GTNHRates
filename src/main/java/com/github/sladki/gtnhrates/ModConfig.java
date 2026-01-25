@@ -55,6 +55,10 @@ public class ModConfig {
         @Config.Comment("New quests")
         @Config.DefaultBoolean(true)
         public static boolean enableNewQuests;
+
+        @Config.Comment("Singleblock Miners stacking up to 4 blocks")
+        @Config.DefaultBoolean(true)
+        public static boolean enableMinerStacking;
     }
 
     @Config(modid = "gtnhrates")

@@ -15,6 +15,7 @@ This is an addon for [GregTech: New Horizons](https://github.com/GTNewHorizons/G
 - **Automatically open Item Holder covers' inventories:** open and close them all at once (and disable shift+clicking), like it should be
 - **NEI bookmarks table of contents**: lists bookmark "namespaces", allowing to quickly navigate and rearrange them, ties bookmarks to searches (see preview below)
 - **Extra quests**: two new quests for early Hammer and Lumberjack Axe
+- **Singleblock Miners stacking**: stack up to 4 Miners similar to Pumps, with 20% energy per operation discount
 
 <video src="https://github.com/user-attachments/assets/ab396d9c-fc6a-4c43-bb3d-0879c9e2994f" width="60%" poster=""> </video>
 
