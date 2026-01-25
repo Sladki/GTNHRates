@@ -7,6 +7,7 @@ import java.util.Set;
 
 import com.github.sladki.gtnhrates.ModConfig;
 import com.github.sladki.gtnhrates.mixins.late.NEIBookmarksContents;
+import com.github.sladki.gtnhrates.mixins.late.NEIBookmarksTweaks;
 import com.github.sladki.gtnhrates.mixins.late.Quests;
 import com.gtnewhorizon.gtnhlib.config.ConfigException;
 import com.gtnewhorizon.gtnhlib.config.ConfigurationManager;
@@ -52,6 +53,7 @@ public class LateMixinsLoader implements ILateMixinLoader {
                 "GTHammerProspecting",
                 "GTItemHolderCover"));
         mixinsToLoad.addAll(NEIBookmarksContents.mixins());
+        mixinsToLoad.addAll(NEIBookmarksTweaks.mixins());
         mixinsToLoad.addAll(Quests.mixins());
         if (loadedMods.contains("HungerOverhaul")) {
             mixinsToLoad.add("HungerOverhaulCrops");
