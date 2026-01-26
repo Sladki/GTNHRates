@@ -103,6 +103,10 @@ public class ModConfig {
         @Config.Comment("IC2 Tree Tap Resin extraction rate")
         @Config.RangeFloat(min = 0.1F, max = 64F)
         public static float ic2RubberTreeResinYield = 4F;
+
+        @Config.Comment("The list of 'recipe category:value' pairs for more control. Pairs with invalid or outside of [0.1;64] range values are ignored. Exact categories strings are checked first, then substring after the last '.'. Set the first entry to 'print' to print all categories to the log (after loading to the main menu).")
+        @Config.DefaultStringList({ "!print", "primitiveblastfurnace:228", "gt.recipe.lathe:0" })
+        public static String[] gtRecipesPerCategoryEnergyDiscount;
     }
 
     protected static void registerConfigClasses() {
