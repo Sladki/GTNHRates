@@ -115,6 +115,10 @@ public class ModConfig {
         @Config.Comment("The list of 'recipe category:value' pairs for more control. Pairs with invalid or outside of [0.1;64] range values are ignored. Exact categories strings are checked first, then substring after the last '.'. Set the first entry to 'print' to print all categories to the log (after loading to the main menu).")
         @Config.DefaultStringList({ "!print", "primitiveblastfurnace:228", "gt.recipe.lathe:0" })
         public static String[] gtRecipesPerCategoryEnergyDiscount;
+
+        @Config.Comment("IC2 Rubber Tree saplings drop chance (1/35 by default) multiplier")
+        @Config.RangeFloat(min = 0.1F, max = 64F)
+        public static float ic2RubberTreeSaplingsDropChanceMultiplier = 2F;
     }
 
     protected static void registerConfigClasses() {

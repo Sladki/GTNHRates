@@ -50,6 +50,7 @@ public class LateMixinsLoader implements ILateMixinLoader {
                 "GTMetaTools",
                 "ForestryBees",
                 "IC2TreeTap",
+                "IC2TreeLeaves",
                 "GTHammerProspecting",
                 "GTItemHolderCover"));
         mixinsToLoad.addAll(NEIBookmarksContents.mixins());

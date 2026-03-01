@@ -11,6 +11,7 @@ This is an addon for [GregTech: New Horizons](https://github.com/GTNewHorizons/G
 - **GT tools crafting durability:** 8x
 - **GT singleblock Miners energy consumption:** 1x
 - **IC2 Tree Tap's Sticky Resin extraction amount:** 4x
+- **IC2 Rubber Tree saplings drop chance multiplier:** 4x
 
 ##### Miscellaneous:
 - **GT Hammer ore prospecting overhaul:** the radius is 2 blocks, but 100% chance to scan
