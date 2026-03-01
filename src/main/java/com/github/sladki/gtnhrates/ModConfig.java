@@ -27,6 +27,14 @@ public class ModConfig {
         @Config.DefaultStringList({ "logWood", "Cobblestone", "gregtech:gt.metatool.01" })
         public static String[] ingredientsRecipesBlacklist;
 
+        @Config.Comment("Allows autocrafting in Crafting Station to use nearby inventories (slots are hidden).")
+        @Config.DefaultBoolean(true)
+        public static boolean enableTCCraftingStationAdjacentInventoriesSearch;
+
+        @Config.Comment("The 'nearby' inventories distance")
+        @Config.RangeInt(min = 1, max = 228)
+        public static int enableTCCraftingStationAdjacentInventoriesSearchRadius = 2;
+
     }
 
     @Config(modid = GTNHRates.MODID, category = "misc")
