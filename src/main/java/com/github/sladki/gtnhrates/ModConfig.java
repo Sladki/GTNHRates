@@ -1,5 +1,8 @@
 package com.github.sladki.gtnhrates;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import net.minecraft.client.gui.GuiScreen;
 
 import com.gtnewhorizon.gtnhlib.config.Config;
@@ -7,6 +10,8 @@ import com.gtnewhorizon.gtnhlib.config.ConfigException;
 import com.gtnewhorizon.gtnhlib.config.ConfigurationManager;
 import com.gtnewhorizon.gtnhlib.config.SimpleGuiConfig;
 import com.gtnewhorizon.gtnhlib.config.SimpleGuiFactory;
+
+import cpw.mods.fml.client.config.IConfigElement;
 
 public class ModConfig {
 
@@ -67,6 +72,14 @@ public class ModConfig {
         @Config.Comment("Singleblock Miners stacking up to 4 blocks")
         @Config.DefaultBoolean(true)
         public static boolean enableMinerStacking;
+
+        @Config.Comment("Allow to change the order of quest lines showed in the Quest Book")
+        @Config.DefaultBoolean(true)
+        public static boolean enableMovingQuestLines;
+
+        @Config.Comment("Moved QuestLines, meant to be edited inside the book [highId:lowId:moved?]")
+        @Config.DefaultStringList({})
+        public static String[] movedQuestLines;
     }
 
     @Config(modid = "gtnhrates")
@@ -119,6 +132,35 @@ public class ModConfig {
         @Config.Comment("IC2 Rubber Tree saplings drop chance (1/35 by default) multiplier")
         @Config.RangeFloat(min = 0.1F, max = 64F)
         public static float ic2RubberTreeSaplingsDropChanceMultiplier = 2F;
+    }
+
+    private static final Map<String, IConfigElement<?>> configElementsCache = new HashMap<>();
+
+    public static <T> IConfigElement<T> getConfigElement(Class<?> configClass, String name) {
+        IConfigElement<?> configElement = configElementsCache.get(name);
+
+        if (configElement == null) {
+            try {
+                configClass.getField(name)
+                    .getName();
+                for (IConfigElement<?> ce : ConfigurationManager.getConfigElements(configClass)) {
+                    if (ce.getName()
+                        .equals(name)) {
+                        configElement = ce;
+                        configElementsCache.put(name, ce);
+                        break;
+                    }
+                }
+            } catch (NoSuchFieldException e) {
+                throw new RuntimeException("Config typo! Field " + name + " does not exist.");
+            } catch (ConfigException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        @SuppressWarnings("unchecked")
+        IConfigElement<T> result = (IConfigElement<T>) configElement;
+        return result;
     }
 
     protected static void registerConfigClasses() {
