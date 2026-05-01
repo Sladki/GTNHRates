@@ -15,6 +15,9 @@ import java.util.stream.Stream;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.nbt.NBTTagString;
 
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -527,6 +530,21 @@ public class NEIBookmarksContents {
 
                 updatedMap.put(bookmarkItem, i + 1 - contentsGridOffset);
                 getContentsGrid().addItem(bookmarkItem, true);
+            }
+
+            if (updatedMap.size() < 5) {
+                ItemStack is = new ItemStack(Items.written_book, 0);
+                NBTTagCompound nbtTagCompound = new NBTTagCompound();
+                NBTTagList pagesTag = new NBTTagList();
+                pagesTag.appendTag(new NBTTagString(""));
+                nbtTagCompound.setTag("pages", pagesTag);
+                nbtTagCompound.setString("title", "HELP!!1 My bookmarks don't work((");
+                nbtTagCompound.setString(
+                    "author",
+                    "This is the Table of Contents, navigate to another grid (<> buttons below) or disable in the config (shown if Ngrids<5)");
+                is.setTagCompound(nbtTagCompound);
+                BookmarkItem bi = BookmarkItem.of(neiBookmarksContents$BOOKMARK_GROUP_ID_NAMESPACES, is);
+                getContentsGrid().addItem(bi, true);
             }
 
             // put namespaces group to the top
