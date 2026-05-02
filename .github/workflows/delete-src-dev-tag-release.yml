@@ -27,7 +27,7 @@ jobs:
           # 2. Filter for names ending in -dev.jar OR -sources.jar
           # 3. Extract only the 'id' of those assets
           ASSET_IDS=$(gh release view "$TAG" --repo "$REPO" --json assets \
-            --jq '.assets[] | select(.name | test("-dev\\.jar$|-sources\\.jar$")) | .id')
+            --jq '.assets[] | select(.name | test("-dev\\.jar$|-sources\\.jar$")) | .databaseId')
 
           if [ -z "$ASSET_IDS" ]; then
             echo "No matching *-dev.jar or *-sources.jar files found. Nothing to delete."
