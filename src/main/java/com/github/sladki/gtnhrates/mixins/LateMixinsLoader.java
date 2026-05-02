@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.github.sladki.gtnhrates.ModConfig;
+import com.github.sladki.gtnhrates.mixins.late.CropsNH;
 import com.github.sladki.gtnhrates.mixins.late.NEIBookmarksContents;
 import com.github.sladki.gtnhrates.mixins.late.NEIBookmarksTweaks;
 import com.github.sladki.gtnhrates.mixins.late.Quests;
@@ -55,6 +56,7 @@ public class LateMixinsLoader implements ILateMixinLoader {
         mixinsToLoad.addAll(NEIBookmarksContents.mixins());
         mixinsToLoad.addAll(NEIBookmarksTweaks.mixins());
         mixinsToLoad.addAll(Quests.mixins());
+        mixinsToLoad.addAll(CropsNH.mixins());
         if (loadedMods.contains("HungerOverhaul")) {
             mixinsToLoad.add("HungerOverhaulCrops");
         }
