@@ -156,7 +156,7 @@ public class NEIBookmarksContents {
 
                             Item item = GameRegistry.findItem(modId, name);
                             if (item != null) {
-                                resultMap.put(new ItemStack(item, 1, meta), searchString);
+                                resultMap.put(new ItemStack(item, 0, meta), searchString);
                             }
                         }
                     }
@@ -483,7 +483,7 @@ public class NEIBookmarksContents {
                 for (Map.Entry<ItemStack, String> entry : loadSearchBookmarks(bookmarkFile).entrySet()) {
                     BookmarkItem bookmarkItem = BookmarkItem
                         .of(neiBookmarksContents$BOOKMARK_GROUP_ID_SEARCH, entry.getKey());
-                    bookmarkItem.amount = 0;
+                    // bookmarkItem.amount = 0;
                     getContentsGrid().addItem(bookmarkItem, true);
                     getBookmarkToSearchStringMap().put(bookmarkItem, entry.getValue());
                 }

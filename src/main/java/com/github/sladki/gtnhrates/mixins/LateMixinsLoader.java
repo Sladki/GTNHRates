@@ -34,11 +34,10 @@ public class LateMixinsLoader implements ILateMixinLoader {
         }
         List<String> mixinsToLoad = new ArrayList<>(
             Arrays.asList(
-                "TileEntityOresAccessor",
                 "NaturaCrops",
                 "IC2Crops",
                 "GTOres",
-                "GTOres$Bartworks",
+                "GTOres$GTOreManager",
                 "GTOilDrill",
                 "GTMiner",
                 // "GTRecipes", // Look at EventsHandler
