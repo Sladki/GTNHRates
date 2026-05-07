@@ -1,9 +1,6 @@
 package com.github.sladki.gtnhrates.mixins.late;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -15,7 +12,6 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.oredict.OreDictionary;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -27,9 +23,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.github.sladki.gtnhrates.ModConfig;
 import com.github.sladki.gtnhrates.mixins.extras.AdjacentInventorySlot;
+import com.github.sladki.gtnhrates.mixins.extras.GuiBlacklistFavoriteButton;
+import com.github.sladki.gtnhrates.mixins.extras.NEIRecipeExpansionFilter;
 
-import codechicken.nei.SearchField;
 import codechicken.nei.recipe.GuiFavoriteButton;
+import codechicken.nei.recipe.GuiRecipeButton;
+import codechicken.nei.recipe.NEIRecipeWidget;
 import codechicken.nei.recipe.Recipe;
 import tconstruct.plugins.nei.CraftingStationOverlayHandler;
 import tconstruct.tools.inventory.CraftingStationContainer;
@@ -38,48 +37,38 @@ import tconstruct.util.config.PHConstruct;
 
 public class NEIBookmarksTweaks {
 
-    // Store to check if config changed
-    private static String[] blacklistedIngredientsReference;
-    private static Set<String> blacklistedIngredients;
-
     public static List<String> mixins() {
         return Stream
-            .of("GuiFavoriteButtonMixin", "CraftingStationContainerMixin", "CraftingStationOverlayHandlerMixin")
+            .of(
+                "GuiFavoriteButtonMixin",
+                "CraftingStationContainerMixin",
+                "CraftingStationOverlayHandlerMixin",
+                "NEIRecipeWidgetMixin")
             .map(s -> "NEIBookmarksTweaks" + "$" + s)
             .collect(Collectors.toList());
     }
 
-    public static Set<String> blacklistedIngredientsRecipes() {
-        if (blacklistedIngredientsReference != ModConfig.NEI.ingredientsRecipesBlacklist) {
-            blacklistedIngredientsReference = ModConfig.NEI.ingredientsRecipesBlacklist;
-            blacklistedIngredients = Arrays.stream(blacklistedIngredientsReference)
-                .map(s -> s.toLowerCase(Locale.ROOT))
-                .collect(Collectors.toSet());
-        }
-        return blacklistedIngredients;
-    }
+    @Mixin(value = NEIRecipeWidget.class, remap = false)
+    public abstract static class NEIRecipeWidgetMixin {
 
-    public static String itemStackOredictName(ItemStack itemStack) {
-        StringBuilder builder = new StringBuilder();
-
-        for (int id : OreDictionary.getOreIDs(itemStack)) {
-            String oreDictionaryName = OreDictionary.getOreName(id);
-            if (!"Unknown".equals(oreDictionaryName)) {
-                builder.append(oreDictionaryName)
-                    .append(",");
+        @Inject(method = "getDefatulButtons", at = @At(value = "RETURN"))
+        private void addBlacklistFavoriteButton(CallbackInfoReturnable<List<GuiRecipeButton>> cir) {
+            if (!ModConfig.NEI.enableRecipeExpansionFilter) {
+                return;
+            }
+            for (GuiRecipeButton button : cir.getReturnValue()) {
+                if (button instanceof GuiFavoriteButton favButton) {
+                    cir.getReturnValue()
+                        .add(
+                            new GuiBlacklistFavoriteButton(
+                                favButton.xPosition,
+                                favButton.yPosition - GuiRecipeButton.BUTTON_HEIGHT - 1,
+                                favButton));
+                    return;
+                }
             }
         }
 
-        if (builder.length() > 0) {
-            builder.deleteCharAt(builder.length() - 1);
-        }
-
-        return builder.toString();
-    }
-
-    public static String itemStackID(ItemStack itemStack) {
-        return itemStack.getItem().delegate.name()
-            + (itemStack.getItemDamage() != 0 ? "/" + itemStack.getItemDamage() : "");
     }
 
     @Mixin(value = GuiFavoriteButton.class, remap = false)
@@ -91,19 +80,10 @@ public class NEIBookmarksTweaks {
                 value = "INVOKE",
                 target = "Lcodechicken/nei/recipe/Recipe;of(Lcodechicken/nei/recipe/Recipe$RecipeId;)Lcodechicken/nei/recipe/Recipe;"))
         private Recipe excludeBlacklistedIngredientsRecipes(Recipe.RecipeId recipeId) {
-            if (recipeId != null && ModConfig.NEI.enableIngredientsRecipesBlacklist) {
+            if (recipeId != null && ModConfig.NEI.enableRecipeExpansionFilter) {
                 ItemStack itemStack = recipeId.getResult();
-                if (blacklistedIngredientsRecipes().stream()
-                    .anyMatch(
-                        s -> itemStackID(itemStack).toLowerCase(Locale.ROOT)
-                            .contains(s))
-                    || blacklistedIngredientsRecipes()
-                        .contains(itemStackOredictName(itemStack).toLowerCase(Locale.ROOT))
-                    || blacklistedIngredientsRecipes().contains(
-                        SearchField.getEscapedSearchText(itemStack)
-                            .toLowerCase(Locale.ROOT))) {
-                    return null;
-                }
+                if (NEIRecipeExpansionFilter.FILTER()
+                    .isExcluded(itemStack)) return null;
             }
             return Recipe.of(recipeId);
         }
