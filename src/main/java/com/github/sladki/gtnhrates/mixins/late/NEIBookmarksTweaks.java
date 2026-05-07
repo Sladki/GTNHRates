@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -136,6 +137,17 @@ public class NEIBookmarksTweaks {
                             || !inv.isUseableByPlayer(inventoryplayer.player)) {
                             continue;
                         }
+
+                        // dirty hack to workaround bogo sorter messing with read only empty slots
+                        boolean uniformSlots = true;
+                        ItemStack is = new ItemStack(Blocks.stone);
+                        for (int i = 0; i < inv.getSizeInventory(); i++) {
+                            if (!inv.isItemValidForSlot(i, is)) {
+                                uniformSlots = false;
+                                break;
+                            }
+                        }
+                        if (!uniformSlots) continue;
 
                         TileEntity te = (TileEntity) inv;
                         for (int i = 0; i < inv.getSizeInventory(); i++) {

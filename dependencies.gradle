@@ -41,6 +41,7 @@ configurations.configureEach {
 
 dependencies {
     api("com.github.GTNewHorizons:NotEnoughItems:2.8.40-GTNH:dev")
+    api("com.github.GTNewHorizons:InventoryBogoSorter:1.2.68-GTNH:dev")
 
     runtimeOnlyNonPublishable("com.github.GTNewHorizons:Angelica:1.0.0-beta66b") // Remove when running a server
 
