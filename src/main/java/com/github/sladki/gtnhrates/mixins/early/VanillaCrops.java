@@ -33,7 +33,7 @@ public abstract class VanillaCrops extends BlockBush {
         }
     }
 
-    @Inject(method = "updateTick", at = @At(value = "HEAD"), cancellable = true)
+    @Inject(method = "updateTick", at = @At(value = "HEAD"), cancellable = true, remap = true)
     private void onUpdateTick(World worldIn, int x, int y, int z, Random random, CallbackInfo ci) {
         super.updateTick(worldIn, x, y, z, random);
         if (ModConfig.Misc.cropsGrowthOverhaul) {
