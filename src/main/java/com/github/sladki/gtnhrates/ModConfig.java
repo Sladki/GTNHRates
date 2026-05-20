@@ -80,6 +80,10 @@ public class ModConfig {
         @Config.Comment("Moved QuestLines, meant to be edited inside the book [highId:lowId:moved?]")
         @Config.DefaultStringList({})
         public static String[] movedQuestLines;
+
+        @Config.Comment("[Requires restart] Resources blocks giving drops without breaking at the beginning of the game")
+        @Config.DefaultBoolean(true)
+        public static boolean persistentBlocks;
     }
 
     @Config(modid = "gtnhrates")
