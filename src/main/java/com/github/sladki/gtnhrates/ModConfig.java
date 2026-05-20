@@ -26,11 +26,11 @@ public class ModConfig {
 
         @Config.Comment("Prevents listed items recipes to be included in recipe trees")
         @Config.DefaultBoolean(true)
-        public static boolean enableIngredientsRecipesBlacklist;
+        public static boolean enableRecipeExpansionFilter;
 
-        @Config.Comment("Prevents listed items recipes to be included in recipe trees. Checks for id (substring) -> oredict (exact) -> name (exact) as collected with NEI hotkeys")
+        @Config.Comment("Prevents listed items recipes to be included in recipe trees. Checks for !exact_name (inclusion override) -> exact_name -> exact_oredict -> substring_id as collected with NEI hotkeys")
         @Config.DefaultStringList({ "logWood", "Cobblestone", "gregtech:gt.metatool.01" })
-        public static String[] ingredientsRecipesBlacklist;
+        public static String[] recipeExpansionFilterRules;
 
         @Config.Comment("Allows autocrafting in Crafting Station to use nearby inventories (slots are hidden).")
         @Config.DefaultBoolean(true)
@@ -80,6 +80,10 @@ public class ModConfig {
         @Config.Comment("Moved QuestLines, meant to be edited inside the book [highId:lowId:moved?]")
         @Config.DefaultStringList({})
         public static String[] movedQuestLines;
+
+        @Config.Comment("[Requires restart] Resources blocks giving drops without breaking at the beginning of the game")
+        @Config.DefaultBoolean(true)
+        public static boolean persistentBlocks;
     }
 
     @Config(modid = "gtnhrates")

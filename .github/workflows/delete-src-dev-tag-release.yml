@@ -21,26 +21,53 @@ jobs:
           TAG: ${{ github.event.workflow_run.head_branch }}
         shell: bash
         run: |
-          echo "Fetching assets for release: $TAG"
+          echo "=== DEBUG: Environment Variables ==="
+          echo "REPO: $REPO"
+          echo "TAG: $TAG"
+          echo "===================================="
 
-          # 1. List all assets for this specific tag
-          # 2. Filter for names ending in -dev.jar OR -sources.jar
-          # 3. Extract only the 'id' of those assets
-          ASSET_IDS=$(gh release view "$TAG" --repo "$REPO" --json assets \
-            --jq '.assets[] | select(.name | test("-dev\\.jar$|-sources\\.jar$")) | .databaseId')
+          # 1. Fetch raw JSON using the API to perfectly match your data structure
+          echo "Fetching release data from API..."
+          RAW_JSON=$(gh api repos/"$REPO"/releases/tags/"$TAG" || echo "API_ERROR")
 
+          if [ "$RAW_JSON" == "API_ERROR" ]; then
+            echo "❌ ERROR: Failed to fetch release for tag $TAG. Does the release exist yet?"
+            exit 1
+          fi
+
+          # 2. DEBUG: Print all asset names currently attached to the release
+          echo "=== DEBUG: Available Assets ==="
+          echo "$RAW_JSON" | jq -r '.assets[]? | .name' || echo "Failed to parse assets"
+          echo "==============================="
+
+          # 3. Filter using 'endswith' (much safer than regex in bash/jq strings) and extract '.id'
+          echo "Filtering for *-dev.jar and *-sources.jar..."
+          ASSET_IDS=$(echo "$RAW_JSON" | jq -r '.assets[]? | select(.name | endswith("-dev.jar") or endswith("-sources.jar")) | .id')
+
+          # 4. Check if we found anything
           if [ -z "$ASSET_IDS" ]; then
-            echo "No matching *-dev.jar or *-sources.jar files found. Nothing to delete."
+            echo "⚠️ No matching *-dev.jar or *-sources.jar files found. Nothing to delete."
+
+            # DEBUG: Dump the full asset JSON so you can see exactly what the API returned
+            echo "=== DEBUG: Full Asset JSON Dump ==="
+            echo "$RAW_JSON" | jq '.assets'
             exit 0
           fi
 
-          echo "Found the following Asset IDs to delete:"
+          echo "✅ Found the following Asset IDs to delete:"
           echo "$ASSET_IDS"
 
-          # Loop through each ID and delete it via the API
+          # 5. Loop through each ID and delete it
           for ID in $ASSET_IDS; do
-            echo "Deleting asset ID: $ID"
-            gh api --method DELETE repos/$REPO/releases/assets/$ID
+            echo "🗑️ Deleting asset ID: $ID"
+            # Delete asset via API
+            gh api --method DELETE repos/"$REPO"/releases/assets/"$ID"
+
+            if [ $? -eq 0 ]; then
+              echo "   -> Successfully deleted ID $ID"
+            else
+              echo "   -> ❌ FAILED to delete ID $ID"
+            fi
           done
 
           echo "Cleanup successful!"

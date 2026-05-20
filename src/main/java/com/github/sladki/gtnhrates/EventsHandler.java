@@ -4,8 +4,16 @@ import static com.github.sladki.gtnhrates.Utils.applyRate;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraftforge.event.entity.player.FillBucketEvent;
+
+import com.github.sladki.gtnhrates.mixins.extras.PersistentBlocks;
+
+import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
@@ -14,6 +22,33 @@ import gregtech.api.recipe.RecipeMap;
 import gregtech.api.util.GTRecipe;
 
 public class EventsHandler {
+
+    public static class PersistentBlocksEvents {
+
+        private static final HashSet<MovingObjectPosition> waterBlocks = new HashSet<>();
+
+        @SubscribeEvent(priority = EventPriority.HIGHEST)
+        public void onPreBucketFill(FillBucketEvent event) {
+            final MovingObjectPosition pos = event.target;
+            if (event.world.getBlock(pos.blockX, pos.blockY, pos.blockZ) == Blocks.water) {
+                if (PersistentBlocks
+                    .tryReduceDurability(event.entityPlayer, Blocks.water, pos.blockX, pos.blockY, pos.blockZ)) {
+                    waterBlocks.add(pos);
+                }
+            }
+        }
+
+        @SubscribeEvent(priority = EventPriority.LOWEST)
+        public void onPostBucketFill(FillBucketEvent event) {
+            final MovingObjectPosition pos = event.target;
+            if (waterBlocks.contains(pos)) {
+                waterBlocks.remove(pos);
+                if (!event.isCanceled() && event.world.isAirBlock(pos.blockX, pos.blockY, pos.blockZ)) {
+                    event.world.setBlock(pos.blockX, pos.blockY, pos.blockZ, Blocks.water, 0, 3);
+                }
+            }
+        }
+    }
 
     private boolean modifiedRecipes = false;
 

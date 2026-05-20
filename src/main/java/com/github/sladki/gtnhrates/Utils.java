@@ -10,11 +10,13 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -23,6 +25,28 @@ import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.ModContainer;
 
 public abstract class Utils {
+
+    public static class Sided<T> {
+
+        private final Supplier<T> supplier;
+
+        private T client;
+        private T server;
+
+        public Sided(Supplier<T> supplier) {
+            this.supplier = supplier;
+        }
+
+        public T get(World world) {
+            if (world.isRemote) {
+                client = client == null ? supplier.get() : client;
+                return client;
+            } else {
+                server = server == null ? supplier.get() : server;
+                return server;
+            }
+        }
+    }
 
     private static HashMap<String, ZipEntry> zipEntries(ZipFile zipFile, String filterPath) {
         HashMap<String, ZipEntry> result = new HashMap<>();
