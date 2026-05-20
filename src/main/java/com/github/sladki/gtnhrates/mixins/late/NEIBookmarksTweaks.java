@@ -51,7 +51,7 @@ public class NEIBookmarksTweaks {
     @Mixin(value = NEIRecipeWidget.class, remap = false)
     public abstract static class NEIRecipeWidgetMixin {
 
-        @Inject(method = "getDefatulButtons", at = @At(value = "RETURN"))
+        @Inject(method = "getDefaultButtons", at = @At(value = "RETURN"))
         private void addBlacklistFavoriteButton(CallbackInfoReturnable<List<GuiRecipeButton>> cir) {
             if (!ModConfig.NEI.enableRecipeExpansionFilter) {
                 return;
