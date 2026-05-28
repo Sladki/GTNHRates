@@ -53,7 +53,8 @@ public class LateMixinsLoader implements ILateMixinLoader {
                 "IC2TreeTap",
                 "IC2TreeLeaves",
                 "GTHammerProspecting",
-                "GTItemHolderCover"));
+                "GTItemHolderCover",
+                "OreFinderWand"));
         mixinsToLoad.addAll(NEIBookmarksContents.mixins());
         mixinsToLoad.addAll(NEIBookmarksTweaks.mixins());
         mixinsToLoad.addAll(Quests.mixins());

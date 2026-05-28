@@ -84,6 +84,10 @@ public class ModConfig {
         @Config.Comment("[Requires restart] Resources blocks giving drops without breaking at the beginning of the game")
         @Config.DefaultBoolean(true)
         public static boolean persistentBlocks;
+
+        @Config.Comment("Allow Ore Finder Wand to cycle over contents of Forestry's Miner Backpack placed inside")
+        @Config.DefaultBoolean(true)
+        public static boolean enableOreFinderWandBackpacksInteraction;
     }
 
     @Config(modid = "gtnhrates")

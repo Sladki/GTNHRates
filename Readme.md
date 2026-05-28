@@ -23,6 +23,7 @@ This is an addon for [GregTech: New Horizons](https://github.com/GTNewHorizons/G
 - **Use nearby inventories for autocrafting in Crafting Station**: not only attached to the Crafting Station, but also in radius (2, slots are hidden, but sorter knows about them)
 - **"Hide" questlines in the Quest book**: Shift+Click on a questline, to move it to the bottom of the list or restore position.
 - **Early resources persistent blocks**: Sand, Gravel and Clay blocks will drop items without breaking, Water blocks will last too. Adds an extra quest with details (next to the Flint one).
+- **Ore Finder Wand and Miner Backpacks**: Ore Finder Wand will iterate over items stored in Forestry's Miner Backpack placed inside.
 
 <video src="https://github.com/user-attachments/assets/ab396d9c-fc6a-4c43-bb3d-0879c9e2994f" width="60%" poster=""> </video>
 
