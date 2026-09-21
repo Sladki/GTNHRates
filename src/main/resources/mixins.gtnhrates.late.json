@@ -5,7 +5,9 @@
   "refmap": "mixins.gtnhrates.refmap.json",
   "target": "@env(DEFAULT)",
   "compatibilityLevel": "JAVA_8",
-  "mixins": [],
+  "mixins": [
+    "Radium226"
+  ],
   "client": [],
   "server": []
 }
