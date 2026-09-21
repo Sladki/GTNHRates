@@ -34,6 +34,7 @@ public class LateMixinsLoader implements ILateMixinLoader {
         }
         List<String> mixinsToLoad = new ArrayList<>(
             Arrays.asList(
+                "Radium226",
                 "TileEntityOresAccessor",
                 "NaturaCrops",
                 "IC2Crops",
