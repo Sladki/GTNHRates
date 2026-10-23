@@ -65,6 +65,7 @@ public class PersistentBlocks {
     }
 
     public static boolean tryReduceDurability(EntityPlayer player, Block block, int x, int y, int z) {
+        if (player.isSneaking()) return false;
         final PersistentBlocks pblocks = SIDED.get(player.worldObj);
         PersistentBlock pblock = null;
         if (block instanceof BlockGravel && (y >= 61 && y <= 63)
