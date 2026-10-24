@@ -55,7 +55,8 @@ public class LateMixinsLoader implements ILateMixinLoader {
                 "GTHammerProspecting",
                 "GTItemHolderCover",
                 "OreFinderWand",
-                "GTRockBreaker"));
+                "GTRockBreaker",
+                "BWOres"));
         mixinsToLoad.addAll(NEIBookmarksContents.mixins());
         mixinsToLoad.addAll(NEIBookmarksTweaks.mixins());
         mixinsToLoad.addAll(Quests.mixins());
