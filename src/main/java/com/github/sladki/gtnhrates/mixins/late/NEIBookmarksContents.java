@@ -252,6 +252,10 @@ public class NEIBookmarksContents {
         @Shadow
         public List<BookmarksGridSlot> gridMask;
 
+        @Shadow
+        @Final
+        protected BookmarkGrid grid;
+
         @Redirect(
             method = "nextSlotIndex",
             at = @At(value = "INVOKE", target = "Lcodechicken/nei/bookmark/BookmarkGrid;isInvalidSlot(I)Z"))
@@ -277,7 +281,8 @@ public class NEIBookmarksContents {
                     0,
                     BookmarkItem.of(-1, new ItemStack(Items.book)),
                     null,
-                    new BookmarkGroup(BookmarkPanel.BookmarkViewMode.DEFAULT)));
+                    new BookmarkGroup(BookmarkPanel.BookmarkViewMode.DEFAULT),
+                    grid));
         }
     }
 

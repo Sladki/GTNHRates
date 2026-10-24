@@ -28,8 +28,8 @@ import com.github.sladki.gtnhrates.mixins.extras.NEIRecipeExpansionFilter;
 
 import codechicken.nei.recipe.GuiFavoriteButton;
 import codechicken.nei.recipe.GuiRecipeButton;
-import codechicken.nei.recipe.NEIRecipeWidget;
 import codechicken.nei.recipe.Recipe;
+import codechicken.nei.recipe.widget.RecipeWidget;
 import tconstruct.plugins.nei.CraftingStationOverlayHandler;
 import tconstruct.tools.inventory.CraftingStationContainer;
 import tconstruct.tools.logic.CraftingStationLogic;
@@ -49,7 +49,7 @@ public class NEIBookmarksTweaks {
             .collect(Collectors.toList());
     }
 
-    @Mixin(value = NEIRecipeWidget.class, remap = false)
+    @Mixin(value = RecipeWidget.class, remap = false)
     public abstract static class NEIRecipeWidgetMixin {
 
         @Inject(method = "getDefaultButtons", at = @At(value = "RETURN"))
