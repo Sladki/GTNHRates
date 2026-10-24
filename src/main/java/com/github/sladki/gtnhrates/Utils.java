@@ -123,4 +123,36 @@ public abstract class Utils {
     public static int applyRate(int old, float rate) {
         return (int) Math.max(1, Math.ceil(old / rate));
     }
+
+    private static final Map<String, Float> categoriesDiscountMap = new HashMap<>();
+
+    public static float recipeCategoryDiscount(String category) {
+        if (categoriesDiscountMap.isEmpty()) {
+            for (String s : ModConfig.Rates.gtRecipesPerCategoryEnergyDiscount) {
+                if (s == null) continue;
+                int idx = s.indexOf(":");
+                if (idx < 1) continue;
+                try {
+                    float val = Float.parseFloat(s.substring(idx + 1));
+                    if (val >= 0.1f && val <= 64.0f) {
+                        categoriesDiscountMap.put(s.substring(0, idx), val);
+                    }
+                } catch (NumberFormatException ignored) {}
+            }
+        }
+
+        // exact category string - gt.foo
+        Float discount = categoriesDiscountMap.get(category);
+        // suffix - foo
+        if (discount == null) {
+            int lastDot = category.lastIndexOf('.');
+            if (lastDot != -1 && lastDot < category.length() - 1) {
+                String suffix = category.substring(lastDot + 1);
+                discount = categoriesDiscountMap.get(suffix);
+            }
+        }
+
+        return discount != null ? discount : ModConfig.Rates.gtRecipesEnergyDiscount;
+    }
+
 }
