@@ -48,6 +48,7 @@ dependencies {
     api("com.github.GTNewHorizons:Railcraft:9.17.26:dev")
     api("com.github.GTNewHorizons:ForestryMC:4.11.23:dev")
     api("com.github.GTNewHorizons:TinkersConstruct:1.14.73-GTNH:dev")
+    api("com.github.GTNewHorizons:IFU:1.11.2:dev")
 
     compileOnlyApi(project.files("libs/HungerOverhaul-1.7.10-1.0.0.jenkins104.jar")) // will it work in 2.9? Potion blablah error
 //    runtimeOnlyNonPublishable(project.files("libs/worldedit-v0.0.8.jar")) // Does not work in 2.9-daily

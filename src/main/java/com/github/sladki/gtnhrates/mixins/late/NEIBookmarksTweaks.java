@@ -6,7 +6,6 @@ import java.util.stream.Stream;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -21,6 +20,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import com.cleanroommc.bogosorter.common.sort.SortHandler;
 import com.github.sladki.gtnhrates.ModConfig;
 import com.github.sladki.gtnhrates.mixins.extras.AdjacentInventorySlot;
 import com.github.sladki.gtnhrates.mixins.extras.GuiBlacklistFavoriteButton;
@@ -43,6 +43,7 @@ public class NEIBookmarksTweaks {
                 "GuiFavoriteButtonMixin",
                 "CraftingStationContainerMixin",
                 "CraftingStationOverlayHandlerMixin",
+                "BogoSortHandlerMixin",
                 "NEIRecipeWidgetMixin")
             .map(s -> "NEIBookmarksTweaks" + "$" + s)
             .collect(Collectors.toList());
@@ -89,6 +90,21 @@ public class NEIBookmarksTweaks {
         }
     }
 
+    @Mixin(value = SortHandler.class, remap = false)
+    public abstract static class BogoSortHandlerMixin {
+
+        @Redirect(
+            method = "getSortableSlots",
+            at = @At(value = "INVOKE", target = "Ljava/util/List;add(Ljava/lang/Object;)Z"))
+        private boolean leaveMySlotsAlone(List<Object> instance, Object e) {
+            if (ModConfig.NEI.enableTCCraftingStationAdjacentInventoriesSearch && e instanceof AdjacentInventorySlot) {
+                return false;
+            }
+            return instance.add(e);
+        }
+
+    }
+
     @Mixin(value = CraftingStationContainer.class, remap = false)
     public abstract static class CraftingStationContainerMixin extends Container {
 
@@ -117,17 +133,6 @@ public class NEIBookmarksTweaks {
                             || !inv.isUseableByPlayer(inventoryplayer.player)) {
                             continue;
                         }
-
-                        // dirty hack to workaround bogo sorter messing with read only empty slots
-                        boolean uniformSlots = true;
-                        ItemStack is = new ItemStack(Blocks.stone);
-                        for (int i = 0; i < inv.getSizeInventory(); i++) {
-                            if (!inv.isItemValidForSlot(i, is)) {
-                                uniformSlots = false;
-                                break;
-                            }
-                        }
-                        if (!uniformSlots) continue;
 
                         TileEntity te = (TileEntity) inv;
                         for (int i = 0; i < inv.getSizeInventory(); i++) {

@@ -35,6 +35,7 @@ public class LateMixinsLoader implements ILateMixinLoader {
         }
         List<String> mixinsToLoad = new ArrayList<>(
             Arrays.asList(
+                "Radium226",
                 "NaturaCrops",
                 "IC2Crops",
                 "GTOres",
@@ -52,7 +53,9 @@ public class LateMixinsLoader implements ILateMixinLoader {
                 "IC2TreeTap",
                 "IC2TreeLeaves",
                 "GTHammerProspecting",
-                "GTItemHolderCover"));
+                "GTItemHolderCover",
+                "OreFinderWand",
+                "GTRockBreaker"));
         mixinsToLoad.addAll(NEIBookmarksContents.mixins());
         mixinsToLoad.addAll(NEIBookmarksTweaks.mixins());
         mixinsToLoad.addAll(Quests.mixins());

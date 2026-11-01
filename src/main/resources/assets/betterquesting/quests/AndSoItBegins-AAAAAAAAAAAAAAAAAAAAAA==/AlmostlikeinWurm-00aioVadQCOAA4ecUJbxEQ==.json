@@ -8,7 +8,7 @@
   "properties:10": {
     "betterquesting:10": {
       "autoClaim:1": 0,
-      "desc:8": "As you might also have noticed when collecting gravel, blocks did not break.\n\nThis is intended behavior to preserve the beauty of lakes, rivers and mountains.\n\nThe following blocks will not break until at least a specific amount has been mined or certain quests are completed:\n\n * Gravel: 256 (at Y 61-63, skylight level at the top > 10)\n * Sand: 256 (same conditions as Gravel)\n * Water: 16\n * Clay: 512\n * Hardened Clay: 256\n\nThis ensures you have enough time to find alternative sources or materials to repair the landscape.",
+      "desc:8": "As you might also have noticed when collecting gravel, blocks did not break.\n\nThis is intended behavior to preserve the beauty of lakes, rivers and mountains.\n\nThe following blocks will not break until at least a specific amount has been mined or certain quests are completed:\n\n * Gravel: 256 (at Y 61-63, skylight level at the top > 10)\n * Sand: 256 (same conditions as Gravel)\n * Water: 16\n * Clay: 512\n * Hardened Clay: 256\n\nThis ensures you have enough time to find alternative sources or materials to repair the landscape.\n\n[note]Disabled while sneaking.[/note]",
       "globalShare:1": 0,
       "icon:10": {
         "Count:3": 1,

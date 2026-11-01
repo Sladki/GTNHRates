@@ -84,6 +84,10 @@ public class ModConfig {
         @Config.Comment("[Requires restart] Resources blocks giving drops without breaking at the beginning of the game")
         @Config.DefaultBoolean(true)
         public static boolean persistentBlocks;
+
+        @Config.Comment("Allow Ore Finder Wand to cycle over contents of Forestry's Miner Backpack placed inside")
+        @Config.DefaultBoolean(true)
+        public static boolean enableOreFinderWandBackpacksInteraction;
     }
 
     @Config(modid = "gtnhrates")
@@ -136,6 +140,10 @@ public class ModConfig {
         @Config.Comment("IC2 Rubber Tree saplings drop chance (1/35 by default) multiplier")
         @Config.RangeFloat(min = 0.1F, max = 64F)
         public static float ic2RubberTreeSaplingsDropChanceMultiplier = 2F;
+
+        @Config.Comment("Radium 226 decay rate")
+        @Config.RangeFloat(min = 0.1F, max = 64F)
+        public static float gtPlusPlusRadium226DecayRate = 4F;
     }
 
     private static final Map<String, IConfigElement<?>> configElementsCache = new HashMap<>();
