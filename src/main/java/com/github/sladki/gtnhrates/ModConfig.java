@@ -136,6 +136,10 @@ public class ModConfig {
         @Config.Comment("IC2 Rubber Tree saplings drop chance (1/35 by default) multiplier")
         @Config.RangeFloat(min = 0.1F, max = 64F)
         public static float ic2RubberTreeSaplingsDropChanceMultiplier = 2F;
+
+        @Config.Comment("Radium 226 decay rate")
+        @Config.RangeFloat(min = 0.1F, max = 64F)
+        public static float gtPlusPlusRadium226DecayRate = 4F;
     }
 
     private static final Map<String, IConfigElement<?>> configElementsCache = new HashMap<>();
