@@ -30,6 +30,8 @@ public class NEIRecipeExpansionFilter {
     }
 
     public Optional<String> decisiveRule(ItemStack itemStack) {
+        if (itemStack == null) return Optional.empty();
+
         String pattern;
         pattern = itemStackNEIName(itemStack).toLowerCase(Locale.ROOT);
         if (inclusionOverrides.contains(pattern)) return Optional.of("!" + pattern);
@@ -49,6 +51,8 @@ public class NEIRecipeExpansionFilter {
     }
 
     public void toggleRestriction(ItemStack itemStack) {
+        if (itemStack == null) return;
+
         Optional<String> rule = decisiveRule(itemStack);
         if (!rule.isPresent()) {
             exclusionPatterns.add(itemStackNEIName(itemStack).toLowerCase(Locale.ROOT));
